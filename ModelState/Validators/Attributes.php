@@ -6,7 +6,7 @@
  * Time: 11:51
  */
 
-namespace Helpers\Validators;
+namespace ModelState\Validators;
 
 
 class Attributes {

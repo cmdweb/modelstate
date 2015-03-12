@@ -6,7 +6,7 @@
  * Time: 11:44
  */
 
-namespace Helpers\Validators;
+namespace ModelState\Validators;
 
 
 interface iValidator {

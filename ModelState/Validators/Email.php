@@ -6,11 +6,11 @@
  * Time: 11:55
  */
 
-namespace Helpers\Validators;
+namespace ModelState\Validators;
 
 
-use Helpers\ModelState;
-use Helpers\Validation;
+use ModelState\ModelState;
+use ModelState\Validation;
 
 abstract class Email implements iValidator {
 

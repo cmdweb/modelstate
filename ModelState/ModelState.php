@@ -5,7 +5,7 @@
  * Time: 15:06
  */
 
-namespace Helpers;
+namespace ModelState;
 
 use Annotation\Annotation;
 use ModelState\Validators\Attributes;
