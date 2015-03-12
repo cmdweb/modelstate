@@ -1,0 +1,17 @@
+{
+  "name": "alcatraz/modelstate",
+  "description": "ModelState Alcatraz Framework.",
+  "authors": [
+    {
+      "name": "Gabriel Malaquias",
+      "email": "g@gmalaquias.com"
+    }
+  ],
+  "keywords": ["alcatraz", "modelstate"],
+  "license": "MIT",
+  "type": "library",
+   "autoload": {
+        "psr-0": { "ModelState\\": "" }
+    },
+	"target-dir": "ModelState"
+}
