@@ -12,5 +12,8 @@
   "type": "library",
    "autoload": {
         "psr-0": { "ModelState\\": "" }
-    }
+    },
+  "require" : {
+    "alcatraz/string": "1.0.0"
+  }
 }
