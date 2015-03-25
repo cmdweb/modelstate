@@ -5,7 +5,7 @@
  * Time: 15:06
  */
 
-namespace ModelState;
+namespace Alcatraz\ModelState;
 
 use Alcatraz\Annotation\Annotation;
 use Alcatraz\ModelState\Validators\Attributes;
