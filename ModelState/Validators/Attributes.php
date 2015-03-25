@@ -6,7 +6,7 @@
  * Time: 11:51
  */
 
-namespace ModelState\Validators;
+namespace Alcatraz\ModelState\Validators;
 
 
 class Attributes {

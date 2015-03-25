@@ -6,7 +6,7 @@
  * Time: 11:44
  */
 
-namespace ModelState\Validators;
+namespace Alcatraz\ModelState\Validators;
 
 
 interface iValidator {

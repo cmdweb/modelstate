@@ -3,7 +3,7 @@
  * @author: Gabriel Malaquias
  */
 
-namespace ModelState;
+namespace Alcatraz\ModelState;
 
 class Validation
 {

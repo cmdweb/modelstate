@@ -7,9 +7,9 @@
 
 namespace ModelState;
 
-use Annotation\Annotation;
-use ModelState\Validators\Attributes;
-use String\StringHelper;
+use Alcatraz\Annotation\Annotation;
+use Alcatraz\ModelState\Validators\Attributes;
+use Alcatraz\Components\String\StringHelper;
 
 class ModelState
 {

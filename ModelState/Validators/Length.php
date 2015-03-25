@@ -6,11 +6,10 @@
  * Time: 11:55
  */
 
-namespace ModelState\Validators;
+namespace Alcatraz\ModelState\Validators;
 
-
-use ModelState\ModelState;
-use ModelState\Validation;
+use Alcatraz\ModelState\ModelState;
+use Alcatraz\ModelState\Validation;
 
 abstract class Length implements iValidator
 {
