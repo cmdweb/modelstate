@@ -72,7 +72,7 @@ class Attributes {
     }
 
     private function callFunction(){
-        if(file_exists(VALIDATORS_PATH . $this->_annnotation . '.php')){
+        if(file_exists(PATH_VALIDATORS . $this->_annnotation . '.php')){
             $class = NAMESPACE_VALIDATORS . $this->_annnotation;
             call_user_func_array(array( $class , "isValid"), array($this));
         }
