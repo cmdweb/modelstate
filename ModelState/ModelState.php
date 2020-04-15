@@ -13,8 +13,8 @@ use Alcatraz\Components\String\StringHelper;
 
 class ModelState
 {
-
     public static $errors = array();
+    public static $message = null;
 
     public static function addError($erro)
     {
@@ -37,6 +37,7 @@ class ModelState
     public static function clear()
     {
         self::$errors = array();
+        self::$message = null;
     }
 
     public static function ModelTreatment($model)
@@ -77,7 +78,7 @@ class ModelState
         foreach ($get as $campo => $data):
             if (array_key_exists("Virtual", $data))
                 $return[$data["Name"]] = array("Type" => $data["Type"],
-                                  "Fk" => $data["Fk"]);
+                    "Fk" => $data["Fk"]);
 
         endforeach;
 
@@ -102,12 +103,12 @@ class ModelState
 
     public static function TryValidationModel($model)
     {
+        ModelState::clear();
         $classAnnotations = new Annotation($model);
         $attributes = $classAnnotations->getAttributes();
         $annotation = $classAnnotations->getAnnotations();
 
         foreach ($annotation as $campo => $options):
-            //var_dump($options);
             foreach ($options as $attr => $valor):
                 if (!array_key_exists("getFunction", $attributes[$attr]) || $attributes[$attr]["getFunction"] == true)
                     $parameter = new Attributes($campo,

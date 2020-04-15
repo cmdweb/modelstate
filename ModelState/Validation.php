@@ -114,73 +114,26 @@ class Validation
 
     static function validaCnpj($cnpj)
     {
-        $cnpj = trim($cnpj);
-        $soma = 0;
-        $multiplicador = 0;
-        $multiplo = 0;
-
-
-        # [^0-9]: RETIRA TUDO QUE N�O � NUM�RICO,  "^" ISTO NEGA A SUBSTITUI��O, OU SEJA, SUBSTITUA TUDO QUE FOR DIFERENTE DE 0-9 POR "";
-        $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
-
-        if (empty($cnpj) || strlen($cnpj) != 14)
+        $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
+        // Valida tamanho
+        if (strlen($cnpj) != 14)
             return false;
-
-        # VERIFICA��O DE VALORES REPETIDOS NO CNPJ DE 0 A 9 (EX. '00000000000000')
-        for ($i = 0; $i <= 9; $i++) {
-            $repetidos = str_pad('', 14, $i);
-
-            if ($cnpj === $repetidos)
-                return false;
+        // Valida primeiro dígito verificador
+        for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++)
+        {
+            $soma += $cnpj{$i} * $j;
+            $j = ($j == 2) ? 9 : $j - 1;
         }
-
-        # PEGA A PRIMEIRA PARTE DO CNPJ, SEM OS D�GITOS VERIFICADORES
-        $parte1 = substr($cnpj, 0, 12);
-
-        # INVERTE A 1� PARTE DO CNPJ PARA CONTINUAR A VALIDA��O    $parte1_invertida = strrev($parte1);
-
-        # PERCORRENDO A PARTE INVERTIDA PARA OBTER O FATOR DE CALCULO DO 1� D�GITO VERIFICADOR
-        for ($i = 0; $i <= 11; $i++) {
-            $multiplicador = ($i == 0) || ($i == 8) ? 2 : $multiplicador;
-
-            $multiplo = ($parte1_invertida[$i] * $multiplicador);
-
-            $soma += $multiplo;
-
-            $multiplicador++;
+        $resto = $soma % 11;
+        if ($cnpj{12} != ($resto < 2 ? 0 : 11 - $resto))
+            return false;
+        // Valida segundo dígito verificador
+        for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++)
+        {
+            $soma += $cnpj{$i} * $j;
+            $j = ($j == 2) ? 9 : $j - 1;
         }
-
-        # OBTENDO O 1� D�GITO VERIFICADOR
-        $rest = $soma % 11;
-
-        $dv1 = ($rest == 0 || $rest == 1) ? 0 : 11 - $rest;
-
-        # PEGA A PRIMEIRA PARTE DO CNPJ CONCATENANDO COM O 1� D�GITO OBTIDO
-        $parte1 .= $dv1;
-
-        # MAIS UMA VEZ INVERTE A 1� PARTE DO CNPJ PARA CONTINUAR A VALIDA��O
-        $parte1_invertida = strrev($parte1);
-
-        $soma = 0;
-
-        # MAIS UMA VEZ PERCORRE A PARTE INVERTIDA PARA OBTER O FATOR DE CALCULO DO 2� D�GITO VERIFICADOR
-        for ($i = 0; $i <= 12; $i++) {
-            $multiplicador = ($i == 0) || ($i == 8) ? 2 : $multiplicador;
-
-            $multiplo = ($parte1_invertida[$i] * $multiplicador);
-
-            $soma += $multiplo;
-
-            $multiplicador++;
-        }
-
-        # OBTENDO O 2� D�GITO VERIFICADOR
-        $rest = $soma % 11;
-
-        $dv2 = ($rest == 0 || $rest == 1) ? 0 : 11 - $rest;
-
-        # AO FINAL COMPARA SE OS D�GITOS OBTIDOS S�O IGUAIS AOS INFORMADOS (OU A SEGUNDA PARTE DO CNPJ)
-        return ($dv1 == $cnpj[12] && $dv2 == $cnpj[13]) ? true : false;
-        //echo ($dv1 == $cnpj[12] && $dv2 == $cnpj[13]) ? 'TRUE' : 'FALSE';
+        $resto = $soma % 11;
+        return $cnpj{13} == ($resto < 2 ? 0 : 11 - $resto);
     }
 }
