@@ -4,7 +4,7 @@
   "authors": [
     {
       "name": "Gabriel Malaquias",
-      "email": "g@gmalaquias.com"
+      "email": "gemalaquias@gmail.com"
     }
   ],
   "keywords": ["alcatraz", "modelstate"],
@@ -14,8 +14,8 @@
         "psr-0": { "Alcatraz\\ModelState\\": "" }
     },
   "require" : {
-    "alcatraz/string": "1.0.0",
-    "alcatraz/annotation": "1.0.0"
+    "alcatraz/string": "^1.1.0",
+    "alcatraz/annotation": "^1.1.0"
   },
   "target-dir": "Alcatraz"
 
